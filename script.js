@@ -58,6 +58,11 @@ function init() {
     
     // Request notification permission
     requestNotificationPermission();
+    
+    // Initialize tasks management
+    if (typeof window.initTasks === 'function') {
+        window.initTasks();
+    }
 }
 
 // Request notification permission
@@ -118,9 +123,17 @@ function setupEventListeners() {
             closeCreditsModal();
         }
     });
-    
-    // Add keyboard shortcuts
+      // Add keyboard shortcuts
     document.addEventListener('keydown', (e) => {
+        // Skip if focus is on input or textarea
+        if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+            // Only handle Escape key
+            if (e.code === 'Escape' && creditsModal.classList.contains('show')) {
+                closeCreditsModal();
+            }
+            return;
+        }
+        
         // Space: Start/Pause
         if (e.code === 'Space' && !e.repeat) {
             e.preventDefault(); // Prevent space from scrolling the page
@@ -276,11 +289,25 @@ function completeTimer() {
             icon: 'images/favicon.png'
         });
     }
-      // If focus session completed, increment counter
+    
+    // If focus session completed, increment counter
     if (timerMode === 'focus') {
         completedSessions++;
         sessionsCount.textContent = completedSessions;
         saveCompletedSessions();
+        
+        // Generate unique session ID
+        const sessionId = Date.now();
+        
+        // Dispatch event for session completion
+        const sessionCompletedEvent = new CustomEvent('pomodoroCompleted', {
+            detail: {
+                sessionId: sessionId,
+                timestamp: new Date().toISOString(),
+                duration: FOCUS_TIME
+            }
+        });
+        document.dispatchEvent(sessionCompletedEvent);
         
         // Show confetti animation
         if (typeof showConfetti === 'function') {
@@ -462,8 +489,33 @@ function loadRandomQuote() {
     }, 300);
 }
 
+// Initialize Tasks
+function initializeTasksIntegration() {
+    // Initialize the tasks module
+    if (typeof window.initTasks === 'function') {
+        window.initTasks();
+        
+        // When a focus session completes, associate with the active task (if any)
+        document.addEventListener('pomodoroCompleted', (e) => {
+            // Check if there's a manually set active task
+            if (window.activeTaskId) {
+                window.associateTaskWithSession(e.detail.sessionId, window.activeTaskId);
+            } else {
+                // Fallback: use first uncompleted task
+                const activeTaskElements = document.querySelectorAll('.task-item:not(.completed)');
+                if (activeTaskElements.length > 0) {
+                    // Associate the first uncompleted task with this session
+                    const taskId = parseInt(activeTaskElements[0].dataset.id);
+                    window.associateTaskWithSession(e.detail.sessionId, taskId);
+                }
+            }
+        });
+    }
+}
+
 // Initialize the app
 init();
+initializeTasksIntegration();
 
 // Register Service Worker for PWA support
 if ('serviceWorker' in navigator) {

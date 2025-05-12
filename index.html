@@ -46,10 +46,22 @@
                 <button id="pauseBtn" class="btn" disabled>Pause</button>
                 <button id="resetBtn" class="btn" disabled>Reset</button>
             </div>
-        </div>
-
-        <div class="session-info">
+        </div>        <div class="session-info">
             <p>Sessions completed: <span id="sessionsCount">0</span></p>
+        </div>        <div class="task-container">
+            <h3>Current Tasks</h3>
+            <div class="task-input-container">
+                <input type="text" id="taskInput" placeholder="What are you working on?" maxlength="100">
+                <button id="addTaskBtn" class="btn btn-small">Add</button>
+            </div>
+            <ul id="taskList" class="task-list">
+                <!-- Tasks will be added here dynamically -->
+            </ul>
+            <div class="task-controls">
+                <button id="clearCompletedBtn" class="btn-text">Clear Completed</button>
+                <button id="exportTasksBtn" class="btn-text">Export Stats</button>
+                <span class="task-count"><span id="activeTaskCount">0</span> tasks remaining</span>
+            </div>
         </div>
 
         <div class="quote-container" id="quoteContainer">
@@ -74,8 +86,9 @@
                 <span><span class="shortcut-key">Space</span> Start/Pause</span>
                 <span><span class="shortcut-key">R</span> Reset</span>
                 <span><span class="shortcut-key">F</span> Focus Mode</span>
-                <span><span class="shortcut-key">B</span> Break Mode</span>
-                <span><span class="shortcut-key">T</span> Toggle Theme</span>                <span><span class="shortcut-key">M</span> Toggle Music</span>
+                <span><span class="shortcut-key">B</span> Break Mode</span>                <span><span class="shortcut-key">T</span> Toggle Theme</span>                <span><span class="shortcut-key">M</span> Toggle Music</span>
+                <span><span class="shortcut-key">N</span> New Task</span>
+                <span><span class="shortcut-key">X</span> Export Stats</span>
                 <span><span class="shortcut-key">C</span> Credits</span>
             </div>
         </footer>
@@ -92,12 +105,11 @@
                 <p>© 2025 | All Rights Reserved</p>
             </div>
         </div>
-    </div>
-
-    <audio id="notificationSound" src="sounds/notification.mp3"></audio>
-    <audio id="backgroundMusic" src="sounds/lofi-background.mp3" loop></audio>
-
-    <script src="confetti.js"></script>
+    </div>    <audio id="notificationSound" src="sounds/notification.mp3"></audio>
+    <audio id="backgroundMusic" src="sounds/lofi-background.mp3" loop></audio>    <script src="confetti.js"></script>
+    <script src="tasks.js"></script>
+    <script src="export.js"></script>
+    <script src="statistics.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
