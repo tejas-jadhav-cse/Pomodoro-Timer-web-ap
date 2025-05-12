@@ -1,0 +1,18 @@
+{
+  "name": "pomodoro-timer",
+  "version": "1.0.0",
+  "description": "A beautiful Pomodoro Timer web application",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "keywords": [
+    "pomodoro",
+    "timer",
+    "productivity",
+    "focus",
+    "break"
+  ],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A beautiful Pomodoro Timer with focus and break sessions to boost your productivity. Features dark mode, notifications, and background music.">
+    <meta name="theme-color" content="#6c63ff">
+    <link rel="manifest" href="manifest.json">
+    <title>Pomodoro Timer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/favicon.png">
+</head>
+<body class="light-mode">
+    <div class="container">
+        <header>
+            <h1>Pomodoro Timer</h1>
+            <div class="theme-toggle" id="themeToggle">
+                <span class="toggle-icon light">☀️</span>
+                <span class="toggle-icon dark">🌙</span>
+            </div>
+        </header>
+
+        <div class="timer-container">
+            <div class="timer-type">
+                <button class="timer-mode active" data-mode="focus">Focus</button>
+                <button class="timer-mode" data-mode="break">Break</button>
+            </div>
+
+            <div class="timer-display">
+                <div class="timer-progress">
+                    <svg class="progress-ring" width="300" height="300">
+                        <circle class="progress-ring-circle-bg" cx="150" cy="150" r="120" />
+                        <circle class="progress-ring-circle" cx="150" cy="150" r="120" />
+                    </svg>
+                    <div class="timer-text">
+                        <span id="minutes">25</span>:<span id="seconds">00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timer-controls">
+                <button id="startBtn" class="btn">Start</button>
+                <button id="pauseBtn" class="btn" disabled>Pause</button>
+                <button id="resetBtn" class="btn" disabled>Reset</button>
+            </div>
+        </div>
+
+        <div class="session-info">
+            <p>Sessions completed: <span id="sessionsCount">0</span></p>
+        </div>
+
+        <div class="quote-container" id="quoteContainer">
+            <p id="quote">"The Pomodoro Technique is a time management method that uses a timer to break work into intervals, traditionally 25 minutes in length, separated by short breaks."</p>
+            <small id="quoteAuthor">- Francesco Cirillo</small>
+        </div>
+
+        <div class="music-player">
+            <div class="music-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="musicToggle">
+                    <span class="slider round"></span>
+                </label>
+                <span>Background Music</span>
+            </div>
+            <div class="volume-control">
+                <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.5">
+            </div>
+        </div>        <footer>
+            <p>Made with ❤️ for productivity</p>
+            <div class="shortcuts">
+                <span><span class="shortcut-key">Space</span> Start/Pause</span>
+                <span><span class="shortcut-key">R</span> Reset</span>
+                <span><span class="shortcut-key">F</span> Focus Mode</span>
+                <span><span class="shortcut-key">B</span> Break Mode</span>
+                <span><span class="shortcut-key">T</span> Toggle Theme</span>
+                <span><span class="shortcut-key">M</span> Toggle Music</span>
+            </div>
+        </footer>
+    </div>    <audio id="notificationSound" src="sounds/notification.mp3"></audio>
+    <audio id="backgroundMusic" src="sounds/lofi-background.mp3" loop></audio>
+
+    <script src="confetti.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
