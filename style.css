@@ -517,6 +517,127 @@ footer .shortcut-key {
     }
 }
 
+/* Credits Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--glass-bg-light);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: var(--shadow-light);
+    border: 1px solid var(--border-light);
+    text-align: center;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.dark-mode .modal-content {
+    background-color: var(--glass-bg-dark);
+    box-shadow: var(--shadow-dark);
+    border: 1px solid var(--border-dark);
+}
+
+.close-modal {
+    color: var(--text-secondary-light);
+    float: right;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.dark-mode .close-modal {
+    color: var(--text-secondary-dark);
+}
+
+.close-modal:hover {
+    color: var(--accent-light);
+}
+
+.dark-mode .close-modal:hover {
+    color: var(--accent-dark);
+}
+
+.modal h2 {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary-light);
+}
+
+.dark-mode .modal h2 {
+    color: var(--text-primary-dark);
+}
+
+.credits-text {
+    color: var(--text-secondary-light);
+    margin-bottom: 0.5rem;
+}
+
+.dark-mode .credits-text {
+    color: var(--text-secondary-dark);
+}
+
+.developer-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent-light);
+    margin-bottom: 1.5rem;
+}
+
+.dark-mode .developer-name {
+    color: var(--accent-dark);
+}
+
+.credits-description {
+    color: var(--text-secondary-light);
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.dark-mode .credits-description {
+    color: var(--text-secondary-dark);
+}
+
+.credits-footer {
+    border-top: 1px solid var(--border-light);
+    padding-top: 1rem;
+    color: var(--text-secondary-light);
+    font-size: 0.9rem;
+}
+
+.dark-mode .credits-footer {
+    border-top: 1px solid var(--border-dark);
+    color: var(--text-secondary-dark);
+}
+
 /* Responsive Styling */
 @media (max-width: 650px) {
     body {

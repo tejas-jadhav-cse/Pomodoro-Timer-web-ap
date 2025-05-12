@@ -75,11 +75,26 @@
                 <span><span class="shortcut-key">R</span> Reset</span>
                 <span><span class="shortcut-key">F</span> Focus Mode</span>
                 <span><span class="shortcut-key">B</span> Break Mode</span>
-                <span><span class="shortcut-key">T</span> Toggle Theme</span>
-                <span><span class="shortcut-key">M</span> Toggle Music</span>
+                <span><span class="shortcut-key">T</span> Toggle Theme</span>                <span><span class="shortcut-key">M</span> Toggle Music</span>
+                <span><span class="shortcut-key">C</span> Credits</span>
             </div>
         </footer>
-    </div>    <audio id="notificationSound" src="sounds/notification.mp3"></audio>
+    </div>
+
+    <!-- Credits Modal -->
+    <div id="creditsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>            <h2>Pomodoro Timer</h2>
+            <p class="credits-text">Designed and developed by:</p>
+            <p class="developer-name">GitHub Daily</p>
+            <p class="credits-description">A beautiful Pomodoro Timer built with HTML, CSS, and vanilla JavaScript to boost productivity.</p>
+            <div class="credits-footer">
+                <p>© 2025 | All Rights Reserved</p>
+            </div>
+        </div>
+    </div>
+
+    <audio id="notificationSound" src="sounds/notification.mp3"></audio>
     <audio id="backgroundMusic" src="sounds/lofi-background.mp3" loop></audio>
 
     <script src="confetti.js"></script>

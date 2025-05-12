@@ -67,6 +67,29 @@ function requestNotificationPermission() {
     }
 }
 
+// Show credits modal
+function showCreditsModal() {
+    const creditsModal = document.getElementById('creditsModal');
+    creditsModal.classList.add('show');
+    setTimeout(() => {
+        creditsModal.querySelector('.modal-content').style.opacity = 1;
+        creditsModal.querySelector('.modal-content').style.transform = 'translateY(0)';
+    }, 10);
+}
+
+// Close credits modal
+function closeCreditsModal() {
+    const creditsModal = document.getElementById('creditsModal');
+    const modalContent = creditsModal.querySelector('.modal-content');
+    
+    modalContent.style.opacity = 0;
+    modalContent.style.transform = 'translateY(20px)';
+    
+    setTimeout(() => {
+        creditsModal.classList.remove('show');
+    }, 300);
+}
+
 // Setup event listeners
 function setupEventListeners() {
     themeToggle.addEventListener('click', toggleTheme);
@@ -77,6 +100,24 @@ function setupEventListeners() {
     resetBtn.addEventListener('click', resetTimer);
     musicToggle.addEventListener('change', toggleBackgroundMusic);
     volumeControl.addEventListener('input', adjustVolume);
+    
+    // Credits modal functionality
+    const creditsModal = document.getElementById('creditsModal');
+    const closeModal = document.querySelector('.close-modal');
+    
+    // Close modal when clicking the X
+    if (closeModal) {
+        closeModal.addEventListener('click', () => {
+            closeCreditsModal();
+        });
+    }
+    
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === creditsModal) {
+            closeCreditsModal();
+        }
+    });
     
     // Add keyboard shortcuts
     document.addEventListener('keydown', (e) => {
@@ -109,6 +150,14 @@ function setupEventListeners() {
         else if (e.code === 'KeyM' && !e.repeat) {
             musicToggle.checked = !musicToggle.checked;
             toggleBackgroundMusic();
+        }
+        // C: Show credits
+        else if (e.code === 'KeyC' && !e.repeat) {
+            showCreditsModal();
+        }
+        // Escape: Close modal
+        else if (e.code === 'Escape' && creditsModal.classList.contains('show')) {
+            closeCreditsModal();
         }
     });
     
