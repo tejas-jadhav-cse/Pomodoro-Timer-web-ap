@@ -10,7 +10,7 @@ A beautiful and feature-rich Pomodoro Timer web application built with HTML, CSS
 - **25-minute focus and 5-minute break timers**
 - **Beautiful circular progress animation with pulse effect**
 - **Clean, minimalistic UI with glassmorphism/neumorphism design**
-- **Toggle between light and dark themes**
+- **Toggle between light and dark themes with button**
 - **Notification sound when timer completes**
 - **Browser notifications support**
 - **Session counter to track completed Pomodoro sessions**
